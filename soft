@@ -1,0 +1,65 @@
+#!/bin/bash
+
+step () {
+    echo -e "\e[1;35m==> $1\e[0m"
+}
+
+SCRIPT_DIR=`dirname $0`
+
+#-------------------------------------------------------------------------------
+step 'Update'
+#-------------------------------------------------------------------------------
+
+sudo pacman -Syu
+
+#-------------------------------------------------------------------------------
+step 'Soft'
+#-------------------------------------------------------------------------------
+
+sudo pacman -S gdm nautilus gnome-terminal gnome-system-monitor gnome-control-center gnome-disk-utility gnome-tweaks ttf-liberation ttf-fira-code noto-fonts noto-fonts-cjk noto-fonts-emoji firefox-developer-edition firefox-developer-edition-i18n-ru neofetch ntfs-3g gvfs-mtp file-roller unrar evince transmission-gtk gthumb materia-gtk-theme papirus-icon-theme ffmpegthumbnailer youtube-dl mpv dconf-editor xdg-user-dirs gnome-mahjongg pysolfc gnome-keyring gnome-menus flatpak wget composer php xdebug code gedit
+
+#-------------------------------------------------------------------------------
+step 'Swap'
+#-------------------------------------------------------------------------------
+
+sudo dd if=/dev/zero of=/swapfile bs=1M count=1024 status=progress
+sudo chmod 600          /swapfile
+sudo mkswap             /swapfile
+sudo swapon             /swapfile
+sudo sh -c 'echo /swapfile none swap defaults 0 0 >> /etc/fstab'
+
+#-------------------------------------------------------------------------------
+step 'Data'
+#-------------------------------------------------------------------------------
+
+sudo mkdir -p                               /media/data
+sudo chown -R qtm:users                     /media/data
+sudo sh -c 'echo LABEL=DATA /media/data ext4 defaults,noatime,nofail 0 2 >> /etc/fstab'
+
+#-------------------------------------------------------------------------------
+step 'Config'
+#-------------------------------------------------------------------------------
+
+xdg-user-dirs-update
+
+mkdir -p ~/.config
+
+cp  -f  $SCRIPT_DIR/bash/.bashrc            ~/
+cp  -f  $SCRIPT_DIR/bash/.pam_environment   ~/
+cp  -rf $SCRIPT_DIR/mpv                     ~/.config/
+cp  -rf $SCRIPT_DIR/git                     ~/.config/
+cp  -rf $SCRIPT_DIR/fontconfig              ~/.config/
+
+sudo chown -R qtm:users                     $SCRIPT_DIR/apps
+sudo chmod -R 777                           $SCRIPT_DIR/apps
+sudo cp $SCRIPT_DIR/apps/pacinfo            /usr/bin
+
+#-------------------------------------------------------------------------------
+step 'Display manager'
+#-------------------------------------------------------------------------------
+
+systemctl enable gdm.service
+
+#-------------------------------------------------------------------------------
+step 'Done!'
+#-------------------------------------------------------------------------------
