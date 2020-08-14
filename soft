@@ -16,7 +16,7 @@ sudo pacman -Syu
 step 'Soft'
 #-------------------------------------------------------------------------------
 
-sudo pacman -S gdm nautilus gnome-terminal gnome-system-monitor gnome-control-center gnome-disk-utility gnome-tweaks ttf-liberation ttf-fira-code noto-fonts noto-fonts-cjk noto-fonts-emoji firefox-developer-edition firefox-developer-edition-i18n-ru neofetch ntfs-3g gvfs-mtp file-roller unrar evince transmission-gtk gthumb materia-gtk-theme papirus-icon-theme ffmpegthumbnailer youtube-dl mpv dconf-editor xdg-user-dirs gnome-mahjongg pysolfc gnome-keyring gnome-menus flatpak wget composer php xdebug code gedit
+sudo pacman -S gdm nautilus gnome-terminal gnome-system-monitor gnome-control-center gnome-disk-utility gnome-tweaks ttf-liberation ttf-fira-code noto-fonts noto-fonts-cjk noto-fonts-emoji firefox-developer-edition firefox-developer-edition-i18n-ru chrome-gnome-shell neofetch ntfs-3g gvfs-mtp file-roller unrar evince transmission-gtk gthumb materia-gtk-theme papirus-icon-theme ffmpegthumbnailer youtube-dl mpv dconf-editor xdg-user-dirs gnome-mahjongg pysolfc gnome-keyring gnome-menus flatpak wget composer php xdebug code gedit
 
 #-------------------------------------------------------------------------------
 step 'Swap'

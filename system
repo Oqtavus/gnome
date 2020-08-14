@@ -33,7 +33,7 @@ echo 'LANG=ru_UA.UTF-8' > /etc/locale.conf
 step 'Font'
 #-------------------------------------------------------------------------------
 
-echo 'FONT=UniCyr_8x16' > /etc/vconsole.conf
+echo 'FONT=UniCyrExt_8x16' > /etc/vconsole.conf
 
 #-------------------------------------------------------------------------------
 step 'Name'
@@ -58,7 +58,7 @@ passwd
 step 'User'
 #-------------------------------------------------------------------------------
 
-useradd -m -g users -G wheel docker -s /bin/bash qtm
+useradd -m -g users -G wheel -s /bin/bash qtm
 
 #-------------------------------------------------------------------------------
 step 'User password'
